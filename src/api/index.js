@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const baseUrl ="http://192.168.0.106:3000/api/ ";
+const baseUrl ="http://192.168.0.106:3000/api/";
 
 axios.interceptors.request.use(function(config) {
   config.headers.authorization = '6';
@@ -15,7 +15,7 @@ axios.interceptors.request.use(function(config) {
  */
 export  async function postTask(data) {
 
-  return axios.post(`${baseUrl}task`, data );
+  return axios.post(`${baseUrl}/  task`, data );
 
 }
 
@@ -34,6 +34,11 @@ export  async function  getUserTasks() {
  * @param data
  * @return {Promise<void>}
  */
-export async function  updateTaskByID(id,data) {
- return axios.put(`${baseUrl}task/id`);
+export async function updateTaskById (id, data) {
+  return axios.put( `${baseUrl}/task/${id}`, data );
+}
+
+
+export async function getUsers () {
+  return axios.get(` ${baseUrl}/admin/users` );
 }

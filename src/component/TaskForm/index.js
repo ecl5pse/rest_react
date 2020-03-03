@@ -4,14 +4,15 @@ import {getUserTasks, postTask} from '../../api';
 import styles from './Form.module.scss';
 
 class  Form extends  React.Component {
-  constructor(props) {
-    super(props);
+
+  constructor (props) {
+    super( props );
     this.state = {
       value: '',
       deadline: '',
       isDone: false,
     };
-  };
+  }
 
   handleChange = e => {
     const { target } = e;
@@ -22,42 +23,41 @@ class  Form extends  React.Component {
     } );
   };
 
- handleSubmit =  async e=>{
-  e.preventDefault();
-  const {data} = await postTask(this.state);
-  this.props.onSubmit(data);
-};
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { data } = await postTask( this.state );
+    this.props.onSubmit( data );
+  };
 
-  render() {
-
-    const {value, deadline, isDone} = this.state;
-
+  render () {
+    const { value, deadline, isDone } = this.state;
     return (
-
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="taskValueInput">
             <span>Task value: </span>
-            <input id="taskValueInput" type="text" name="value" value={value}
-                   onChange={this.handleChange}/>
+            <input id="taskValueInput" type="text" name="value" value={value} onChange={this.handleChange}/>
           </label>
+
           <br/>
+
           <label htmlFor="taskDateInput">
             <span>Task deadline: </span>
-            <input id="taskDateInput" type="date" name="deadline"
-                   value={deadline} onChange={this.handleChange}/>
+            <input id="taskDateInput" type="date" name="deadline" value={deadline} onChange={this.handleChange}/>
           </label>
+
           <br/>
+
           <label htmlFor="taskIsDoneInput">
             <span>Is done: </span>
-            <input id="taskIsDoneInput" type="checkbox" name="isDone"
-                   checked={isDone}
+            <input id="taskIsDoneInput" type="checkbox" name="isDone" checked={isDone}
                    onChange={this.handleChange}/>
           </label>
+
           <br/>
           <input type="submit"/>
         </form>
 
-    )
+    );
   }
 
 }
