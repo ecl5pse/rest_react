@@ -1,52 +1,51 @@
-import React, {ReactPropTypes as PropTypes} from 'react';
+import React, {Component, ReactPropTypes as PropTypes} from 'react';
 
-class DataLoader extends React.Component {
+class DataLoader extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super( props );
     this.state = {
       isFetching: false,
-      data: null,
+      items: [],
       error: null,
     };
   }
 
   loadData = () => {
 
-    this.setState({
+    this.setState( {
       isFetching: true,
-    });
-
+    } );
     try {
 
-      this.props.getData()
-          .then(response => {
-            this.setState({
-              data: response.data,
-            });
-          });
+      this.props.getData().then(
+          response => {
+            this.setState( {
+              items: response.data
+            } );
+          }
+      );
 
     } catch (e) {
-      this.setState({
+      this.setState( {
         error: e,
-      });
-
+      } );
     } finally {
-
-      this.setState({
+      this.setState( {
         isFetching: false,
-      });
-
+      } );
     }
   };
 
-  componentDidMount() {
+  componentDidMount () {
     this.loadData();
   }
 
-  render() {
-    return null;
+  render () {
+
+    return this.props.render( this.state.items );
   }
+
 }
 
 DataLoader.propTypes = {

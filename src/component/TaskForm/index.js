@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getUserTasks, postTask} from '../../api';
+import {getUserTasks, postTask} from '../../api/taskController';
 import styles from './Form.module.scss';
 
 class  Form extends  React.Component {
